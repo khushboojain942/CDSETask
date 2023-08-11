@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Cdse Task</string>
+    <string name="sign_out_button">Sign-out</string>
+    <string name="search">Search</string>
+     <string name="select_table">Select Table</string>
+    <string name="name">Name</string>
+    <string name="department">Department</string>
+    <string name="employee">Employee</string>
+    <string name="search_result">Search Result</string>
+</resources>

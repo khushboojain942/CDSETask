@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "717777641958",
+    "project_id": "cdsetask",
+    "storage_bucket": "cdsetask.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:717777641958:android:dda37360ca23455f347627",
+        "android_client_info": {
+          "package_name": "com.task.cdse"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "717777641958-ercj2cho7c6l41r7v39c4e9dvtdltcps.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.task.cdse",
+            "certificate_hash": "ef2eebae6b5c973f0e947fe859e3dfdd7a7ee4db"
+          }
+        },
+        {
+          "client_id": "717777641958-nabv98nese4utf15hqg60iig9k3m9cpk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCUcKONDRPPLhTWpCjZtDQ6WHZwtGBTjxc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "717777641958-nabv98nese4utf15hqg60iig9k3m9cpk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

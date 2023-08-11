@@ -1,0 +1,67 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+     id 'com.google.gms.google-services'
+    id 'org.jetbrains.kotlin.android'
+//    id 'kotlin-kapt'
+//    id 'com.google.dagger.hilt.android'
+}
+android {
+    compileSdkVersion 33
+    defaultConfig {
+        applicationId "com.task.cdse"
+        minSdkVersion 24
+        targetSdkVersion 33
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    buildFeatures {
+        viewBinding = true
+        dataBinding = true
+    }
+    defaultConfig {
+        multiDexEnabled true
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+//    kapt {
+//        correctErrorTypes true
+//    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+     implementation "com.google.android.material:material:$material"
+    implementation "androidx.core:core-ktx:$core"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$viewModel"
+    testImplementation "junit:junit:$junit"
+      implementation "com.google.firebase:firebase-core:$firebase_core"
+    implementation "com.google.firebase:firebase-auth:$firebase_auth"
+    implementation "com.google.firebase:firebase-firestore:$firebase_firestore"
+    implementation "com.google.android.gms:play-services-auth:$play_services_auth"
+
+    implementation 'androidx.multidex:multidex:2.0.1'
+    implementation 'com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava'
+
+    // Retrofit for network requests
+    implementation "com.squareup.retrofit2:retrofit:$retrofit"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit"
+
+    //------text size------------
+    implementation "com.intuit.sdp:sdp-android:$textSize"
+    implementation "com.intuit.ssp:ssp-android:$textSize"
+
+// Dagger - Hilt
+//    implementation "com.google.dagger:hilt-android:2.44.2"
+//    kapt "com.google.dagger:hilt-android-compiler:2.38.1"
+}
