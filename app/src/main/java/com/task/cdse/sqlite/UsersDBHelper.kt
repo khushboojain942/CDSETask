@@ -59,8 +59,7 @@ class UsersDBHelper(context: Context) :
                 db.insert(DBContract.DepartmentEntry.TABLE_NAME, null, values)
             }
             db.setTransactionSuccessful()
-        }
-        finally {
+        } finally {
             db.endTransaction()
         }
         db.close()
@@ -83,8 +82,7 @@ class UsersDBHelper(context: Context) :
                 db.insert(DBContract.DepartmentManagerEntry.TABLE_NAME, null, values)
             }
             db.setTransactionSuccessful()
-        }
-        finally {
+        } finally {
             db.endTransaction()
         }
         db.close()
@@ -110,8 +108,7 @@ class UsersDBHelper(context: Context) :
                 db.insert(DBContract.EmployeeEntry.TABLE_NAME, null, values)
             }
             db.setTransactionSuccessful()
-        }
-        finally {
+        } finally {
             db.endTransaction()
         }
         db.close()
@@ -134,8 +131,7 @@ class UsersDBHelper(context: Context) :
                 db.insert(DBContract.EmployeeManagementEntry.TABLE_NAME, null, values)
             }
             db.setTransactionSuccessful()
-        }
-        finally {
+        } finally {
             db.endTransaction()
         }
         db.close()
@@ -160,8 +156,7 @@ class UsersDBHelper(context: Context) :
                 db.insert(DBContract.SalariesEntry.TABLE_NAME, null, values)
             }
             db.setTransactionSuccessful()
-        }
-        finally {
+        } finally {
             db.endTransaction()
         }
         db.close()
@@ -210,6 +205,14 @@ class UsersDBHelper(context: Context) :
         db.delete(DBContract.DepartmentEntry.TABLE_NAME, selection, selectionArgs)
 
         return true
+    }
+
+    fun readDatabaseData(sqlQuery: String): Cursor {
+        var users = TitlesItemModel()
+        val db = writableDatabase
+        val cursor: Cursor = db.rawQuery(sqlQuery, null)
+
+        return cursor
     }
 
     fun readDepartment(name: String): ArrayList<DepartmentItemModel> {
@@ -417,7 +420,7 @@ class UsersDBHelper(context: Context) :
 
         private const val SQL_CREATE_DEPARTMENT_MANAGER = ("CREATE TABLE IF NOT EXISTS "
                 + DBContract.DepartmentManagerEntry.TABLE_NAME +
-                " (" +  DBContract.DepartmentManagerEntry.COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+                " (" + DBContract.DepartmentManagerEntry.COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                 DBContract.DepartmentManagerEntry.COLUMN_EMP_NO + " TEXT," +
                 DBContract.DepartmentManagerEntry.COLUMN_FROM_DATE + " TEXT, " +
                 DBContract.DepartmentManagerEntry.COLUMN_TO_DATE + " TEXT, " +
@@ -428,7 +431,7 @@ class UsersDBHelper(context: Context) :
 
         private const val SQL_CREATE_EMPLOYEE_MANAGEMENT = ("CREATE TABLE IF NOT EXISTS "
                 + DBContract.EmployeeManagementEntry.TABLE_NAME +
-                " (" +DBContract.EmployeeManagementEntry.COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+                " (" + DBContract.EmployeeManagementEntry.COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                 DBContract.EmployeeManagementEntry.COLUMN_EMP_NO + " TEXT," +
                 DBContract.EmployeeManagementEntry.COLUMN_FROM_DATE + " TEXT, " +
                 DBContract.EmployeeManagementEntry.COLUMN_TO_DATE + " TEXT, " +
@@ -440,7 +443,7 @@ class UsersDBHelper(context: Context) :
         private
         const val SQL_CREATE_EMPLOYEE =
             "CREATE TABLE IF NOT EXISTS " + DBContract.EmployeeEntry.TABLE_NAME + " (" +
-                     DBContract.EmployeeEntry.COLUMN_EMP_NO + " TEXT PRIMARY KEY," +
+                    DBContract.EmployeeEntry.COLUMN_EMP_NO + " TEXT PRIMARY KEY," +
                     DBContract.EmployeeEntry.COLUMN_FIRST_NAME + " TEXT," +
                     DBContract.EmployeeEntry.COLUMN_LAST_NAME + " TEXT," +
                     DBContract.EmployeeEntry.COLUMN_GENDER + " TEXT," +

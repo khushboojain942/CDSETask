@@ -1,6 +1,7 @@
 package com.task.cdse.main
 
 import android.os.Bundle
+import android.text.TextUtils
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -22,6 +23,7 @@ import com.task.cdse.model.EmployeeItemModel
 import com.task.cdse.model.SalariesItemModel
 import com.task.cdse.model.SearchEmployeeItemModel
 import com.task.cdse.model.TitlesItemModel
+import com.task.cdse.sqlite.DBContract
 import com.task.cdse.sqlite.UsersDBHelper
 import com.task.cdse.utils.Actions
 
@@ -43,7 +45,7 @@ class MainActivity : AppCompatActivity(), OnAuthStateChangeListener {
         initToolBar()
         initGoogleSignInClient()
         usersDBHelper = UsersDBHelper(this)
-        mainViewModel?.insertDataInSqlite(usersDBHelper,this)
+        mainViewModel?.insertDataInSqlite(usersDBHelper, this)
         val spinnerValue = arrayOf(
             resources.getString(R.string.department),
             resources.getString(R.string.employee)
@@ -62,7 +64,31 @@ class MainActivity : AppCompatActivity(), OnAuthStateChangeListener {
             val selectName = activityMainBinding?.spSelectTable?.selectedItem
             val name = activityMainBinding?.etName?.text.toString()
             val searchEmployeeList: MutableList<SearchEmployeeItemModel> = ArrayList()
-            if (selectName?.equals(resources.getString(R.string.department)) == true) {
+            println("select * from " + DBContract.DepartmentEntry.TABLE_NAME
+                    + " WHERE " + DBContract.DepartmentEntry.COLUMN_DEPT_NAME + "='" + "e" + "'")
+          if (!TextUtils.isEmpty(name)){
+              try {
+                  val cursor = usersDBHelper.readDatabaseData(name)
+                  if(cursor.moveToFirst()) {
+                      Toast.makeText(this, "Table Name=> "+cursor.getString(0), Toast.LENGTH_LONG).show();
+                      /* if (cursor.getInt(0) > 0) {
+
+                                  } else {
+                                      Toast.makeText(this, "No Data Found", Toast.LENGTH_LONG).show()
+                                  }*/
+                  }else{
+                      Toast.makeText(this, "No Data Found", Toast.LENGTH_LONG).show()
+                  }
+              }catch (e : Exception){
+                  e.printStackTrace()
+                  Toast.makeText(this, "Wrong query", Toast.LENGTH_LONG).show()
+              }
+          }else{
+              Toast.makeText(this, "Please enter query", Toast.LENGTH_LONG).show()
+
+          }
+
+            /*if (selectName?.equals(resources.getString(R.string.department)) == true) {
                 val departmentList: MutableList<DepartmentItemModel> =
                     usersDBHelper.readDepartment(name)
                 for (deptItem in departmentList) {
@@ -135,7 +161,7 @@ class MainActivity : AppCompatActivity(), OnAuthStateChangeListener {
                         )
                     }
                 }
-            }
+            }*/
 
             if (searchEmployeeList.isNotEmpty()) {
                 activityMainBinding?.tvTitleSearch?.visibility = View.VISIBLE
